@@ -1,0 +1,55 @@
+#include turtle.c
+#include timer.c
+int LEFT_EYE=5;
+int RIGHT_EYE=4;
+
+
+
+
+
+void main()
+
+{
+    motor(LEFT_MOTOR,70); 
+    motor(RIGHT_MOTOR,70); 
+    sleep(3.0);
+    while(1)
+      {
+        motor(LEFT_MOTOR,70); 
+        motor(RIGHT_MOTOR,70); 
+        
+        while ((analog(RIGHT_EYE)<45) && (analog(LEFT_EYE)>45))
+          // If right is inside white tape and left is outside 
+          {
+            motor(LEFT_MOTOR,70); 
+            motor(RIGHT_MOTOR,70); 
+            
+            
+        }  
+        
+      
+          while ((analog(RIGHT_EYE)>60) && (analog(LEFT_EYE)>60))
+          // right is outside and left is outside 
+          {
+            if((timer() > 7.0)&& (timer() < 11.0))
+              { 
+                forward();
+                sleep(2.0);
+                backward();
+                sleep(2.0);
+               
+            }
+            else
+              {
+                right();
+                
+            }
+
+        }
+        while (analog(LEFT_EYE)<45) 
+          {
+            left();
+            
+        }
+    }
+}
